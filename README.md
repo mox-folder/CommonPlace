@@ -38,3 +38,11 @@ Get-ADComputer -Filter {TrustedForDelegation -eq $true -or TrustedToAuthForDeleg
 Get-ADUser -Filter {TrustedForDelegation -eq $true -or TrustedToAuthForDelegation -eq $true} -Properties trustedfordelegation,trsutedtoauthfordelegation, | ft Name, Enabled, TrustedForDelegation,TrustedToAuthForDelegation
 ```
 
+### Check PrintSpooler service on windows hosts
+Get a list of hostnames from above delegation checks and use tip from [iredteam](https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/domain-compromise-via-dc-print-server-and-kerberos-delegation) to simply check if the spool service is available
+```PowerShell
+foreach($hostin $hosts){
+	$hostname = echo $item.name
+	ls \\$hostname\pipe\spoolss
+}
+```
