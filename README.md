@@ -30,3 +30,9 @@ do
 	crackmapexec smb $someDC -u $user -p ''
 done
 ```
+
+### Unconstrained Delegation Check
+```PowerShell
+Get-ADComputer -Filter {TrustedForDelegation -eq $true -and primarygroupid -eq 515} -Properties trustedfordelegation,serviceprincipalname,description
+```
+
