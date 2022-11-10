@@ -41,7 +41,7 @@ Get-ADUser -Filter {TrustedForDelegation -eq $true -or TrustedToAuthForDelegatio
 ### Check PrintSpooler service on windows hosts
 Get a list of hostnames from above delegation checks and use tip from [iredteam](https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/domain-compromise-via-dc-print-server-and-kerberos-delegation) to simply check if the spool service is available
 ```PowerShell
-foreach($hostin $hosts){
+foreach($host in $hosts){
 	$hostname = echo $item.name
 	ls \\$hostname\pipe\spoolss
 }
