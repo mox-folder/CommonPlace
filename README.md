@@ -2,7 +2,13 @@
 Common place info dump
 
 ## TOC
-- TODO
+- File xfer to locked down Windows hosts over VDI
+- Theoretically get AD users with blank passwords
+- AD delegation checks
+- Check PrintSpooler service on windows hosts
+- Check for CrestronSSH hosts where default creds are likely (admin:password)
+
+TODO: add anchor links to above
 
 ## Quick Commands I Don't Have the Bandwidth to Keep In RAM
 
@@ -45,4 +51,28 @@ foreach($host in $hosts){
 	$hostname = echo $item.name
 	ls \\$hostname\pipe\spoolss
 }
+```
+
+### Check for CrestronSSH hosts where default creds are likely (admin:password)
+```Bash
+#!/bin/bash
+# expects output from msfconsole command `services -S 'CrestronSSH' -o crestron_ssh_hosts.txt` <- could also be worth just checking any 22 port
+# cat crestron_ssh_hosts.txt | cut -d ',' -f 1 | tr -d '"' | tail -n +2 > crestron_hosts.txt <- to build
+touch tmp_responses.txt
+touch tmp_output.txt
+totalHosts=$(wc -l crestron_hosts.txt | cut -d " " -f 1)
+echo "Total Hosts to Check: $totalHosts"
+for host in $(cat crestron_hosts.txt)
+do
+	echo '\r\n' | nc -nv $host 22 > tmp_responses.txt
+	response=$(cat tmp_responses.txt | awk 'FNR==1' | tr -d '\r')
+	if [[ "$response" =~ .*"Crestron".* ]]; then
+		echo "$host = crestron" >> tmp_output.txt
+	fi
+done
+crestronCount=$(wc -l tmp_output.txt | cut -d " " -f 1)
+cat tmp_output
+echo "$crestronCount of $totalHosts checked are Crestrons..."
+rm tmp_output.txt
+rm tmp_responses.txt
 ```
