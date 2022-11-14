@@ -76,3 +76,9 @@ echo "$crestronCount of $totalHosts checked are Crestrons..."
 rm tmp_output.txt
 rm tmp_responses.txt
 ```
+
+### Query AD for a list of unique operating systems 
+```Powershell
+$hosts = Get-ADComputer -filter 'enabled -eq "true"' -Properties Name,OperatingSystem
+$hosts | sort Name | select -Unique OperatingSystem
+```
