@@ -89,5 +89,5 @@ $hosts = Get-ADComputer -filter 'enabled -eq "true"' -Properties Name,OperatingS
 $hosts | sort Name | select -Unique OperatingSystem
 
 # alternate one-liner
-Get-ADComputer -Filter "name -like '*'" -Properties operatingSystem | group -Property operatingSystem | Select Name,Count | Sort Name | ft -AutoSize
+Get-ADComputer -Filter "enabled -eq 'true'" -Properties operatingSystem | group -Property operatingSystem | Select Name,Count | Sort Name | ft -AutoSize
 ```
