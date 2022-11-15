@@ -24,6 +24,12 @@ On target host
 [IO.File]::WriteAllbytes('someFilePath', [Convert]::FromBase64String($data))
 ```
 
+### Import AD DLL command order
+```PowerShell
+Import-module .\Microsoft.ActiveDirectory.Management.dll -Verbose
+Import-Module .\ActiveDirectory.psd1
+```
+
 ### Theoretically get AD users with blank passwords 
 With AD module properly imported and working
 ```PowerShell
@@ -81,4 +87,7 @@ rm tmp_responses.txt
 ```Powershell
 $hosts = Get-ADComputer -filter 'enabled -eq "true"' -Properties Name,OperatingSystem
 $hosts | sort Name | select -Unique OperatingSystem
+
+# alternate one-liner
+Get-ADComputer -Filter "name -like '*'" -Properties operatingSystem | group -Property operatingSystem | Select Name,Count | Sort Name | ft -AutoSize
 ```
