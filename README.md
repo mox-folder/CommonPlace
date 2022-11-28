@@ -2,13 +2,13 @@
 Common place info dump
 
 ## TOC
-- File xfer to locked down Windows hosts over VDI
-- Theoretically get AD users with blank passwords
-- AD delegation checks
-- Check PrintSpooler service on windows hosts
-- Check for CrestronSSH hosts where default creds are likely (admin:password)
-
-TODO: add anchor links to above
+- [File xfer to locked down Windows hosts over VDI](#file-xfer-to-locked-down-windows-hosts-over-vdi)
+- [Import AD DLL command order](#import-ad-dll-command-order)
+- [Theoretically get AD users w/ blank passwords](#theoretically-get-ad-users-with-blank-passwords)
+- [AD Delegation Checks](#ad-delegation-checks)
+- [Check PrintSpooler service on Windows hosts](#check-printspooler-service-on-windows-hosts)
+- [Check for CrestronSSH hosts w/ default creds](#check-for-crestronssh-hosts-where-default-creds-are-likely)
+- [Query AD for list of unique operating systems](#query-ad-for-a-list-of-unique-operating-systems)
 
 ## Quick Commands I Don't Have the Bandwidth to Keep In RAM
 
@@ -59,7 +59,8 @@ foreach($host in $hosts){
 }
 ```
 
-### Check for CrestronSSH hosts where default creds are likely (admin:password)
+### Check for CrestronSSH hosts where default creds are likely
+Note these use this cred pair: (admin:password)
 ```Bash
 #!/bin/bash
 # expects output from msfconsole command `services -S 'CrestronSSH' -o crestron_ssh_hosts.txt` <- could also be worth just checking any 22 port
