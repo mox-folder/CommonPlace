@@ -1,16 +1,18 @@
 # CommonPlace
-Common place info dump
+An infodump of commands/knowledge/techniques/tips/tricks/etc. that I don't have the bandwidth to keep in mental RAM.
 
-## [Quick Commands](#quick-commands-i-dont-have-the-bandwidth-to-keep-in-ram)
+## [Windows and AD Environments](#windows--ad-environments)
 - [File xfer to locked down Windows hosts over VDI](#file-xfer-to-locked-down-windows-hosts-over-vdi)
 - [Import AD DLL command order](#import-ad-dll-command-order)
 - [Theoretically get AD users w/ blank passwords](#theoretically-get-ad-users-with-blank-passwords)
 - [AD Delegation Checks](#ad-delegation-checks)
 - [Check PrintSpooler service on Windows hosts](#check-printspooler-service-on-windows-hosts)
-- [Check for CrestronSSH hosts w/ default creds](#check-for-crestronssh-hosts-where-default-creds-are-likely)
 - [Query AD for list of unique operating systems](#query-ad-for-a-list-of-unique-operating-systems)
 
-## Quick Commands I Don't Have the Bandwidth to Keep In RAM
+## [IOT Hosts - Fun stuff](#iot-hosts)
+- [Check for CrestronSSH hosts w/ default creds](#check-for-crestronssh-hosts-where-default-creds-are-likely)
+
+## Windows & AD Environments
 
 ### File xfer to locked down Windows hosts over VDI
 On your local machine (with desired exe, script, whatever already downloaded)
@@ -59,6 +61,17 @@ foreach($host in $hosts){
 }
 ```
 
+### Query AD for a list of unique operating systems 
+```Powershell
+$hosts = Get-ADComputer -filter 'enabled -eq "true"' -Properties Name,OperatingSystem
+$hosts | sort Name | select -Unique OperatingSystem
+
+# alternate one-liner
+Get-ADComputer -Filter "enabled -eq 'true'" -Properties operatingSystem | group -Property operatingSystem | Select Name,Count | Sort Name | ft -AutoSize
+```
+
+## IOT Hosts
+
 ### Check for CrestronSSH hosts where default creds are likely
 Note these use this cred pair: (admin:password)
 ```Bash
@@ -82,13 +95,4 @@ cat tmp_output
 echo "$crestronCount of $totalHosts checked are Crestrons..."
 rm tmp_output.txt
 rm tmp_responses.txt
-```
-
-### Query AD for a list of unique operating systems 
-```Powershell
-$hosts = Get-ADComputer -filter 'enabled -eq "true"' -Properties Name,OperatingSystem
-$hosts | sort Name | select -Unique OperatingSystem
-
-# alternate one-liner
-Get-ADComputer -Filter "enabled -eq 'true'" -Properties operatingSystem | group -Property operatingSystem | Select Name,Count | Sort Name | ft -AutoSize
 ```
