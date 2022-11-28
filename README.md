@@ -1,7 +1,7 @@
 # CommonPlace
 Common place info dump
 
-## TOC
+## [Quick Commands](#quick-commands-i-dont-have-the-bandwidth-to-keep-in-ram)
 - [File xfer to locked down Windows hosts over VDI](#file-xfer-to-locked-down-windows-hosts-over-vdi)
 - [Import AD DLL command order](#import-ad-dll-command-order)
 - [Theoretically get AD users w/ blank passwords](#theoretically-get-ad-users-with-blank-passwords)
