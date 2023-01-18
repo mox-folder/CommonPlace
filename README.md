@@ -1,6 +1,9 @@
 # CommonPlace
 An infodump of commands/knowledge/techniques/tips/tricks/etc. that I don't have the bandwidth to keep in mental RAM.
 
+## [Enumeration & Scanning](#enumeration--scanning)
+- [nmap k-scan](#the-mighty-nmap-k-scan)
+
 ## [Windows and AD Environments](#windows--ad-environments)
 - [File xfer to locked down Windows hosts over VDI](#file-xfer-to-locked-down-windows-hosts-over-vdi)
 - [Import AD DLL command order](#import-ad-dll-command-order)
@@ -11,6 +14,13 @@ An infodump of commands/knowledge/techniques/tips/tricks/etc. that I don't have 
 
 ## [IOT Hosts - Fun stuff](#iot-hosts)
 - [Check for CrestronSSH hosts w/ default creds](#check-for-crestronssh-hosts-where-default-creds-are-likely)
+
+## Enumeration & Scanning
+
+### The mighty nmap k-scan
+```bash
+nmap -Pn -sT -n -v --top-ports 50 -sV -A -iL some-ip-file.txt --reason --max-retries=2 --min-hostgroup=64 -oX some-ip-file-st-topports-500.xml -v
+```
 
 ## Windows & AD Environments
 
