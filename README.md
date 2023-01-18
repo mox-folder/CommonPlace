@@ -3,6 +3,7 @@ An infodump of commands/knowledge/techniques/tips/tricks/etc. that I don't have 
 
 ## [Enumeration & Scanning](#enumeration--scanning)
 - [nmap k-scan](#the-mighty-nmap-k-scan)
+- [basic fuffery](#basic-fuffery)
 
 ## [Windows and AD Environments](#windows--ad-environments)
 - [File xfer to locked down Windows hosts over VDI](#file-xfer-to-locked-down-windows-hosts-over-vdi)
@@ -20,6 +21,10 @@ An infodump of commands/knowledge/techniques/tips/tricks/etc. that I don't have 
 ### The mighty nmap k-scan
 ```bash
 nmap -Pn -sT -n -v --top-ports 50 -sV -A -iL some-ip-file.txt --reason --max-retries=2 --min-hostgroup=64 -oX some-ip-file-st-topports-500.xml -v
+```
+### Basic Fuffery
+```bash
+ffuf -w /path/to/some/wordlist:FUZZ -u http://some-host.some-domain/FUZZ -rate 5
 ```
 
 ## Windows & AD Environments
