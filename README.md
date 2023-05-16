@@ -4,6 +4,7 @@ An infodump of commands/knowledge/techniques/tips/tricks/etc. that I don't have 
 ## [Enumeration & Scanning](#enumeration--scanning)
 - [nmap k-scan](#the-mighty-nmap-k-scan)
 - [basic fuffery](#basic-fuffery)
+- [nuclei](#nuclei)
 
 ## [Windows and AD Environments](#windows--ad-environments)
 - [File xfer to locked down Windows hosts over VDI](#file-xfer-to-locked-down-windows-hosts-over-vdi)
@@ -25,6 +26,11 @@ nmap -Pn -sT -n -v --top-ports 50 -sV -A -iL some-ip-file.txt --reason --max-ret
 ### Basic Fuffery
 ```bash
 ffuf -w /path/to/some/wordlist:FUZZ -u http://some-host.some-domain/FUZZ -rate 5
+```
+### Nuclei
+```bash
+nuclei -u http://foobar.com -rl $RATE -o $customTemplates-foobar-dot-com.txt -stats -t ~/$customTemplatesDir/ #use custom templates
+nuclei -u http://foobar.com -rl $RATE -o nuclei-foobar-dot-com.txt -stats # use default templates
 ```
 
 ## Windows & AD Environments
