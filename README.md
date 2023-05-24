@@ -19,6 +19,11 @@ An infodump of commands/knowledge/techniques/tips/tricks/etc. that I don't have 
 
 ## Enumeration & Scanning
 
+### Nmap scope list to individual IPs
+```bash
+nmap -sL (list scan) -iL (input_file)
+```
+
 ### The mighty nmap k-scan
 ```bash
 nmap -Pn -sT -n -v --top-ports 50 -sV -A -iL some-ip-file.txt --reason --max-retries=2 --min-hostgroup=64 -oX some-ip-file-st-topports-50.xml -v
