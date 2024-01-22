@@ -13,6 +13,7 @@ An infodump of commands/knowledge/techniques/tips/tricks/etc. that I don't have 
 - [AD Delegation Checks](#ad-delegation-checks)
 - [Check PrintSpooler service on Windows hosts](#check-printspooler-service-on-windows-hosts)
 - [Query AD for list of unique operating systems](#query-ad-for-a-list-of-unique-operating-systems)
+- [SMB File grabbing](#smb-file-grab-one-liner)
 
 ## [IOT Hosts - Fun stuff](#iot-hosts)
 - [Check for CrestronSSH hosts w/ default creds](#check-for-crestronssh-hosts-where-default-creds-are-likely)
@@ -96,6 +97,9 @@ $hosts | sort Name | select -Unique OperatingSystem
 Get-ADComputer -Filter "enabled -eq 'true'" -Properties operatingSystem | group -Property operatingSystem | Select Name,Count | Sort Name | ft -AutoSize
 ```
 
+### smb file grab one liner
+	`smbclient '\\HOST\DRIVE$' -c 'prompt OFF;recurse ON;lcd "C";mget *' -u "$USER"`
+ 
 ## IOT Hosts
 
 ### Check for CrestronSSH hosts where default creds are likely
