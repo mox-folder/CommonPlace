@@ -18,6 +18,9 @@ An infodump of commands/knowledge/techniques/tips/tricks/etc. that I don't have 
 ## [IOT Hosts - Fun stuff](#iot-hosts)
 - [Check for CrestronSSH hosts w/ default creds](#check-for-crestronssh-hosts-where-default-creds-are-likely)
 
+## [Tooling](#tooling)
+- [Bloodhound Setup](#bloodhound-setup)
+
 ## Enumeration & Scanning
 
 ### Nmap scope list to individual IPs
@@ -125,4 +128,24 @@ cat tmp_output
 echo "$crestronCount of $totalHosts checked are Crestrons..."
 rm tmp_output.txt
 rm tmp_responses.txt
+```
+## Bloodhound Setup
+```
+sudo apt-get install openjdk-11-jdk
+
+wget -O - https://debian.neo4j.com/neotechnology.gpg.key | sudo apt-key add -
+echo 'deb https://debian.neo4j.com stable 4' | sudo tee /etc/apt/sources.list.d/neo4j.list > /dev/null
+sudo apt-get update
+
+sudo apt-get install apt-transport-https
+
+sudo apt-get install neo4j
+sudo systemctl stop neo4j
+cd /usr/bin
+sudo ./neo4j console
+sudo systemctl start neo4j
+wget https://github.com/BloodHoundAD/BloodHound/releases/download/v4.3.1/BloodHound-linux-x64.zip
+unzip BloodHound-linux-x64
+cd BloodHound-Linux-x64
+./BloodHound --no-sandbox
 ```
