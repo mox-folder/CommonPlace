@@ -23,9 +23,9 @@ An infodump of commands/knowledge/techniques/tips/tricks/etc. that I don't have 
 
 ## Enumeration & Scanning
 
-### Nmap scope list to individual IPs
+### Nmap scope list to individual IPs (no resolution)
 ```bash
-nmap -sL (list scan) -iL (input_file)
+nmap -sL -iL <scope_list> -n
 ```
 
 ### The mighty nmap k-scan
